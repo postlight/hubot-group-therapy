@@ -8,7 +8,7 @@
 #   hubot group therapy
 #
 # Author:
-#   Andrew Connor (andrew.connor@postlight.com)
+#   Andrew Connor
 
 sentiment = require('sentiment')
 
@@ -82,16 +82,20 @@ module.exports = (robot) ->
       robot.http(threadMessagesUrl).get() (err, msg, body) ->
         messages = JSON.parse body
         userMessages = {}
-        for message in messages
-          if userMessages[message.user]?
-            userMessages[message.user] += " #{message.content}"
-          else
-            userMessages[message.user] = message.content
 
-        scores = scoreUserMessages userMessages
-        userAnalysis = scores[0]
-        totalScore = scores[1]
-        userEmotions = []
+        robot.http("#{baseUrl}/user").get() (err, msg, body) ->
+          selfUserData = JSON.parse body
+          for message in messages
+            if message.user != selfUserData.id.toString()
+              if userMessages[message.user]?
+                userMessages[message.user] += " #{message.content}"
+              else
+                userMessages[message.user] = message.content
 
-        for user in userAnalysis
-          getUserNickname res, user, userEmotions, userAnalysis, totalScore
+          scores = scoreUserMessages userMessages
+          userAnalysis = scores[0]
+          totalScore = scores[1]
+          userEmotions = []
+
+          for user in userAnalysis
+            getUserNickname res, user, userEmotions, userAnalysis, totalScore
