@@ -8,7 +8,7 @@
 #   hubot group therapy
 #
 # Author:
-#   Andrew Connor
+#   Andrew Connor (andrew.connor@postlight.com)
 
 sentiment = require('sentiment')
 
