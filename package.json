@@ -1,0 +1,23 @@
+{
+  "name": "hubot-group-therapy",
+  "version": "0.0.6",
+  "description": "Analyze users in a Flowdock thread using sentiment (https://github.com/thisandagain/sentiment)",
+  "author": "Andrew Connor (andrew.connor@postlight.com)",
+  "license": "MIT",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": "hubot, hubot-scripts, flowdock, sentiment",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/postlight/hubot-group-therapy"
+  },
+  "bugs": {
+    "url": "https://github.com/postlight/hubot-group-therapy-issues/issues"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6",
+    "sentiment": "^1.0.5"
+  }
+}
